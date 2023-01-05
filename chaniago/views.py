@@ -93,3 +93,6 @@ def register(request):
         return redirect("/")
     return render(request, 'register.html')
 
+def keluar(request):
+    logout(request)
+    return redirect('/')

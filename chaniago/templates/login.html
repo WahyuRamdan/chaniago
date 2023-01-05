@@ -23,7 +23,13 @@
                     {% endif %}
                         
                     
-                </ul><a class="btn btn-primary ms-md-2" role="button" href="/login">Login</a>
+                </ul>
+                {% if request.user.is_authenticated %}
+                <a class="btn btn-primary ms-md-2" role="button" href="/logout">Logout</a>
+
+                {% else %}
+                    <a class="btn btn-primary ms-md-2" role="button" href="/login">Login</a>
+                {% endif %}
             </div>
         </div>
     </nav>

@@ -20,7 +20,12 @@
                         <li class="nav-item"><a class="nav-link" href="/CRUD1">CRUD 1</a></li>
                         <li class="nav-item"><a class="nav-link" href="/CRUD2">CRUD 2</a></li>
                     {% endif %}
-                </ul><a class="btn btn-primary ms-md-2" role="button" href="/login">Login</a>
+                </ul>
+                {% if request.user.is_authenticated %}
+                    <a class="btn btn-primary ms-md-2" role="button" href="/logout">Logout</a>
+                {% else %}
+                    <a class="btn btn-primary ms-md-2" role="button" href="/login">Login</a>
+                {% endif %}
             </div>
         </div>
     </nav>

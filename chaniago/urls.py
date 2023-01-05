@@ -24,8 +24,9 @@ urlpatterns = [
     path('CRUD2', crud2),
     path('CRUD2/<int:id>', crud2Update),
     path('CRUD2/hapus/<int:id>', crud2Hapus),
-
     path('login', login),
+
     path('register', register),
+    path('logout', keluar),
 
 ]
