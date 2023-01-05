@@ -35,12 +35,10 @@
     </nav>
     <div class="container mt-4">
         <div id="map-box" style="height: 300px;"></div>
-
         <form method="POST">
             {% csrf_token %}
             <input type="hidden" name="lokasi" id="map-input" value="">
             <input type="text" required class="form-control mt-3 mb-3" style="width: 300px;" placeholder="Alamat Detail...." name="alamat" id="map-input">
-
             <button class="btn btn-primary" type="submit">Save</button>
         </form>
     </div>

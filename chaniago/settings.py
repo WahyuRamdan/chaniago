@@ -124,16 +124,13 @@ USE_TZ = True
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+
 if DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     STATIC_URL = 'static/'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
     MEDIA_URL = 'media/'
-else: 
-    STATIC_ROOT = "/home/u1606657/public_html/portfolio_static"
-    STATIC_URL = '/portfolio_static/'
-    MEDIA_ROOT = "/home/u1606657/public_html/portfolio_media"
-    MEDIA_URL = '/portfolio_media/'
+
 STATICFILES_STORAGE="whitenoise.storage.CompressedManifestStaticFilesStorage"
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
