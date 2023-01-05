@@ -22,7 +22,10 @@ def crud1(request):
         )
         return redirect("/")
 
-    return render(request, 'CRUD1.html')
+    if request.user.is_authenticated:
+        return render(request, 'CRUD1.html')
+    else :
+        return redirect("/login")
 
 def crud2(request):
     crud = Crud.objects.all()
@@ -32,9 +35,13 @@ def crud2(request):
             keterangan = request.POST.get('keterangan'),
             lokasi = request.POST.get('lokasi'),
         )
-    return render(request, 'CRUD2.html', context = {
-        "crud" : crud
-    })
+    if request.user.is_authenticated:
+        return render(request, 'CRUD2.html', context = {
+            "crud" : crud
+        })
+    else:
+        return redirect("/login")
+
 
 def crud2Update(request, id):
     crud = Crud.objects.all()
@@ -46,15 +53,21 @@ def crud2Update(request, id):
         update_crud.lokasi = request.POST.get('lokasi')
         update_crud.save()
         
-    return render(request, 'CRUD2.html', context = {
-        "crud" : crud,
-        "update_crud" : update_crud
-    })
+    if request.user.is_authenticated:
+        return render(request, 'CRUD2.html', context = {
+            "crud" : crud,
+            "update_crud" : update_crud
+        })
+    else:
+        return redirect("/login")
 
 def crud2Hapus(request, id):
-    update_crud = Crud.objects.get(id = id)
-    update_crud.delete()
-    return redirect("/CRUD2")
+    if request.user.is_authenticated:
+        update_crud = Crud.objects.get(id = id)
+        update_crud.delete()
+        return redirect("/CRUD2")
+    else:
+        return redirect("/login")
 
 def login(request):
     if request.user.is_authenticated:
