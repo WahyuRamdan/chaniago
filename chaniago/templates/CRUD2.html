@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/Navbar-Right-Links-Dark-icons.css' %}">
+</head>
+
+<body>
+    <nav class="navbar navbar-dark navbar-expand-md bg-dark py-3">
+        <div class="container"><a class="navbar-brand d-flex align-items-center" href="#"><span>Khairunnisa Chaniago
+        </span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-5"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-5">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/CRUD1">CRUD 1</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/CRUD2">CRUD 2</a></li>
+                </ul><a class="btn btn-primary ms-md-2" role="button" href="/login">Login</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+            <form method="POST" class="d-grid justify-content-center mt-4">
+                {% csrf_token %}
+                
+                {% if update_crud %}
+                    <input type="text" class="form-control" style="width: 300px;" name="nama" value="{{update_crud.nama}}">
+                    <input type="text" class="form-control" style="width: 300px;" name="keterangan" value="{{update_crud.keterangan}}" >
+                    <input type="text" class="form-control" style="width: 300px;" name="lokasi" value="{{update_crud.lokasi}}">
+
+                {% else %}
+                    <input type="text" class="form-control" style="width: 300px;" name="nama" placeholder="Nama...">
+                    <input type="text" class="form-control" style="width: 300px;" name="keterangan" placeholder="Keterangan...">
+                    <input type="text" class="form-control" style="width: 300px;" name="lokasi" placeholder="Lokasi...">
+                {% endif %}
+                <button class="btn btn-primary mt-4 mb-4" style="width: 300px;" type="submit">Tambah Data</button>
+            </form>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>No 1</th>
+                        <th>Nama</th>
+                        <th>Keterangan</th>
+                        <th>Lokasi</th>
+                        <th>Button</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for field in crud %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{field.nama}}</td>
+                            <td>{{field.keterangan}}</td>
+                            <td>{{field.lokasi}}</td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a class="btn btn-primary" href="/CRUD2/{{field.id}}">Edit</a>
+                                    <a class="btn btn-primary" href="/CRUD2/hapus/{{field.id}}" style="background: #f31616;">Hapus</a></div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %} "></script>
+
+</body>
+
+</html>
