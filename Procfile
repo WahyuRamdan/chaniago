@@ -1,0 +1,1 @@
+web: gunicorn chaniago.wsgi --log-file -
